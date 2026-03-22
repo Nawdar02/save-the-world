@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAWDAR — STW Services</title>
+<meta name="description" content="Nawdar STW Services — Premium Fortnite Save The World carries. Endurance builds, SSD carries. Fast, cheap, AFK friendly.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--r:#e8003a;--g:#00f5a0;--gold:#ffc94a;--bg:#060810;--s:#111525;--s2:#181d30;--b:rgba(255,255,255,.07);--t:#c8d0e8}
+body{background:var(--bg);color:var(--t);font-family:'Barlow',sans-serif;min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--r);border-radius:2px}
+
+/* PAGE SYSTEM */
+.page{display:none}
+.page.active{display:flex;flex-direction:column;min-height:100vh}
+
+/* LANDING */
+#pg-home{align-items:center;justify-content:center;padding:40px 16px;
+  background:radial-gradient(ellipse 70% 50% at 20% 50%,rgba(232,0,58,.1),transparent 60%),
+  radial-gradient(ellipse 60% 60% at 80% 30%,rgba(255,201,74,.05),transparent 55%),#060810}
+.wrap{max-width:860px;width:100%;text-align:center}
+.logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.logo-hex{width:44px;height:44px;background:var(--r);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;animation:hexglow 3s ease-in-out infinite}
+@keyframes hexglow{0%,100%{filter:drop-shadow(0 0 8px rgba(232,0,58,.9))}50%{filter:drop-shadow(0 0 20px rgba(232,0,58,.3))}}
+.logo-txt{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;letter-spacing:.12em;color:#fff}
+.logo-txt span{color:var(--r)}
+.l-tag{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,208,232,.3);margin-bottom:8px}
+.l-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,9vw,5.2rem);line-height:.9;color:#fff;margin-bottom:10px}
+.l-h1 em{font-style:normal;color:var(--r)}
+.l-sub{font-size:.95rem;color:rgba(200,208,232,.38);margin-bottom:16px;font-weight:300;letter-spacing:.05em}
+.rating-bar{display:inline-flex;align-items:center;gap:10px;background:rgba(255,201,74,.08);border:1px solid rgba(255,201,74,.2);border-radius:30px;padding:8px 18px;margin-bottom:40px}
+.rating-stars{color:var(--gold);font-size:.9rem;letter-spacing:2px}
+.rating-num{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--gold)}
+.rating-count{font-size:.7rem;color:rgba(200,208,232,.4)}
+.choose{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(200,208,232,.25);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px}
+.choose::before,.choose::after{content:'';flex:1;max-width:70px;height:1px;background:rgba(255,255,255,.07)}
+.scards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px}
+@media(max-width:700px){.scards{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.scards{grid-template-columns:1fr}}
+.sc{position:relative;background:var(--s);border:1px solid var(--b);border-radius:18px;padding:30px 20px 26px;cursor:pointer;overflow:hidden;text-align:left;transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s}
+.sc::after{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;border-radius:18px;pointer-events:none}
+.sc.end::after{background:radial-gradient(ellipse at 30% 0%,rgba(232,0,58,.22),transparent 65%)}
+.sc.ssd::after{background:radial-gradient(ellipse at 70% 0%,rgba(255,201,74,.16),transparent 65%)}
+.sc.vch::after{background:radial-gradient(ellipse at 50% 0%,rgba(0,245,160,.12),transparent 65%)}
+.sc:hover{transform:translateY(-5px) scale(1.01)}
+.sc:hover::after{opacity:1}
+.sc.end:hover{border-color:rgba(232,0,58,.55);box-shadow:0 18px 50px rgba(232,0,58,.15)}
+.sc.ssd:hover{border-color:rgba(255,201,74,.45);box-shadow:0 18px 50px rgba(255,201,74,.1)}
+.sc.vch:hover{border-color:rgba(0,245,160,.35);box-shadow:0 18px 50px rgba(0,245,160,.08)}
+.sc-tri{position:absolute;top:0;right:0;width:0;height:0}
+.sc.end .sc-tri{border-style:solid;border-width:0 48px 48px 0;border-color:transparent var(--r) transparent transparent}
+.sc.ssd .sc-tri{border-style:solid;border-width:0 48px 48px 0;border-color:transparent var(--gold) transparent transparent}
+.sc.vch .sc-tri{border-style:solid;border-width:0 48px 48px 0;border-color:transparent var(--g) transparent transparent}
+.sc-ico{font-size:2rem;margin-bottom:12px;display:block;position:relative;z-index:1}
+.sc.end .sc-ico{color:var(--r)}.sc.ssd .sc-ico{color:var(--gold)}.sc.vch .sc-ico{color:var(--g)}
+.sc-name{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.05em;color:#fff;line-height:1;margin-bottom:8px;position:relative;z-index:1}
+.sc-desc{font-size:.76rem;color:rgba(200,208,232,.45);line-height:1.55;margin-bottom:18px;font-weight:300;position:relative;z-index:1}
+.sc-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px;position:relative;z-index:1}
+.pill{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px;font-weight:700}
+.sc.end .pill{background:rgba(232,0,58,.14);color:#ff6b8a;border:1px solid rgba(232,0,58,.22)}
+.sc.ssd .pill{background:rgba(255,201,74,.11);color:#ffc94a;border:1px solid rgba(255,201,74,.2)}
+.sc.vch .pill{background:rgba(0,245,160,.1);color:var(--g);border:1px solid rgba(0,245,160,.2)}
+.sc-cta{display:flex;align-items:center;gap:9px;font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:.13em;position:relative;z-index:1;transition:gap .2s}
+.sc:hover .sc-cta{gap:15px}
+.sc.end .sc-cta{color:var(--r)}.sc.ssd .sc-cta{color:var(--gold)}.sc.vch .sc-cta{color:var(--g)}
+.trust{display:flex;justify-content:center;flex-wrap:wrap;gap:18px}
+.ti{display:flex;align-items:center;gap:7px;font-size:.72rem;color:rgba(200,208,232,.28)}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:99;background:rgba(6,8,16,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--b);padding:0 16px}
+.tb-in{max-width:960px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
+.back-btn{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff;font-family:'Barlow',sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;border-radius:8px;cursor:pointer;transition:all .2s;font-weight:600}
+.back-btn:hover{background:rgba(255,255,255,.12)}
+.ilogo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.1em;color:#fff}
+.ilogo span{color:var(--r)}
+.tbadge{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:20px;font-weight:700}
+.tb-r{background:rgba(232,0,58,.14);color:var(--r);border:1px solid rgba(232,0,58,.3)}
+.tb-g2{background:rgba(255,201,74,.11);color:var(--gold);border:1px solid rgba(255,201,74,.25)}
+.tb-gr{background:rgba(0,245,160,.1);color:var(--g);border:1px solid rgba(0,245,160,.25)}
+
+/* HERO */
+.hero{padding:48px 16px 30px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-70px;left:50%;transform:translateX(-50%);width:520px;height:280px;border-radius:50%;filter:blur(70px);pointer-events:none}
+#pg-end .hero::before{background:rgba(232,0,58,.11)}
+#pg-ssd .hero::before{background:rgba(255,201,74,.08)}
+#pg-vch .hero::before{background:rgba(0,245,160,.06)}
+.h-label{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.c-r{color:var(--r)}.c-g{color:var(--gold)}.c-gr{color:var(--g)}
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,4rem);letter-spacing:.04em;color:#fff;line-height:1;margin-bottom:10px}
+.h-sub{font-size:.85rem;color:rgba(200,208,232,.4);font-weight:300;max-width:460px;margin:0 auto;line-height:1.6}
+
+/* CONTENT */
+.con{max-width:960px;margin:0 auto;padding:0 16px 70px;width:100%}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:18px;margin-top:34px}
+.sl{flex:1;height:1px;background:var(--b)}
+.slb{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,208,232,.25);white-space:nowrap}
+
+/* PRICE CARDS */
+.grid{display:grid;gap:12px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:760px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:440px){.g4,.g3{grid-template-columns:1fr}}
+.pc{background:var(--s);border:1px solid var(--b);border-radius:14px;padding:20px 16px 16px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+.pc:hover{transform:translateY(-4px)}
+.pc.e:hover{border-color:rgba(232,0,58,.35);box-shadow:0 12px 32px rgba(232,0,58,.09)}
+.pc.s:hover{border-color:rgba(255,201,74,.3);box-shadow:0 12px 32px rgba(255,201,74,.07)}
+.pst{position:absolute;top:0;left:0;right:0;height:3px}
+.st-bl{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.st-yl{background:linear-gradient(90deg,#eab308,#fbbf24)}
+.st-gr{background:linear-gradient(90deg,#22c55e,#4ade80)}
+.st-gy{background:linear-gradient(90deg,#6b7280,#9ca3af)}
+.ptag{position:absolute;top:9px;right:9px;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:rgba(59,130,246,.18);color:#60a5fa}
+.pn{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.05em;color:#fff;margin-bottom:5px;margin-top:4px}
+.pd{font-size:.72rem;color:rgba(200,208,232,.35);flex-grow:1;line-height:1.5;margin-bottom:16px;font-weight:300}
+.pr{border-top:1px solid var(--b);padding-top:10px;display:flex;align-items:baseline;justify-content:center;gap:2px}
+.pbig{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--g)}
+.punit{font-size:.8rem;color:rgba(0,245,160,.5);font-weight:600}
+
+/* EXTRAS */
+.extras{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:540px){.extras{grid-template-columns:1fr}}
+.xc{background:var(--s);border:1px solid var(--b);border-left:3px solid var(--r);border-radius:10px;padding:13px 14px;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.xc:hover{background:var(--s2)}
+.xn{font-size:.82rem;font-weight:600;color:#fff}
+.xd{font-size:.68rem;color:rgba(200,208,232,.3);margin-top:2px}
+.xp{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--g);white-space:nowrap;margin-left:10px}
+
+/* SSD ROWS */
+.sr{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.srow{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(255,255,255,.02);border-radius:6px;border:1px solid var(--b);font-size:.78rem}
+.srl{color:rgba(200,208,232,.42)}.srv{font-weight:700;color:#fff}
+.brow{margin-top:10px;display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(255,201,74,.06);border:1px solid rgba(255,201,74,.18);border-radius:8px}
+.brl{font-size:.8rem;color:var(--gold);font-weight:700;letter-spacing:.05em}
+.brp{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--g)}
+.note{background:var(--s);border:1px solid var(--b);border-left:3px solid #5865f2;border-radius:9px;padding:13px 15px;font-size:.78rem;color:rgba(200,208,232,.5);line-height:1.75;margin-top:16px}
+.note strong{color:#fff}
+
+/* ORDER SECTION */
+.order{margin-top:44px;background:var(--s);border:1px solid var(--b);border-radius:20px;padding:34px 24px;position:relative;overflow:hidden;text-align:center}
+.order::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--r),transparent)}
+.o-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.08em;color:#fff;margin-bottom:6px}
+.o-sub{font-size:.8rem;color:rgba(200,208,232,.35);margin-bottom:28px;font-weight:300}
+.action-btns{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:28px}
+
+/* STRIPE BUTTON */
+.stripe-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:380px;padding:18px 28px;background:linear-gradient(135deg,#635BFF,#7c75ff);border:2px solid rgba(99,91,255,.5);border-radius:14px;color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;box-shadow:0 8px 28px rgba(99,91,255,.4),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .2s,box-shadow .2s,filter .2s;position:relative;overflow:hidden}
+.stripe-btn::before{content:'PAY NOW';position:absolute;top:6px;right:12px;font-size:.55rem;letter-spacing:.15em;color:rgba(255,255,255,.5);font-family:'Barlow',sans-serif;font-weight:700}
+.stripe-btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(99,91,255,.55);filter:brightness(1.08)}
+.stripe-btn i{font-size:1.5rem}
+.btn-label{display:flex;flex-direction:column;align-items:flex-start}
+.btn-main{font-size:1.2rem;line-height:1;font-family:'Bebas Neue',sans-serif}
+.btn-hint{font-size:.65rem;color:rgba(255,255,255,.6);font-family:'Barlow',sans-serif;font-weight:400;letter-spacing:.05em}
+
+/* DISCORD BOX */
+.dc-box{width:100%;max-width:380px;background:rgba(88,101,242,.08);border:2px solid rgba(88,101,242,.3);border-radius:14px;padding:18px 20px;text-align:center}
+.dc-top{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px}
+.dc-top i{font-size:1.3rem;color:#5865f2}
+.dc-top span{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.08em;color:#fff}
+.dc-tag{font-size:.62rem;background:rgba(88,101,242,.2);color:#a5acfa;border:1px solid rgba(88,101,242,.3);padding:2px 8px;border-radius:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;display:inline-block}
+.dc-link{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#5865f2,#7289da);color:#fff;text-decoration:none;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.1em;padding:12px 24px;border-radius:10px;box-shadow:0 6px 20px rgba(88,101,242,.4);transition:transform .2s,box-shadow .2s;border:1px solid rgba(255,255,255,.1)}
+.dc-link:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(88,101,242,.55)}
+.dc-hint{font-size:.68rem;color:rgba(200,208,232,.28);margin-top:10px}
+
+/* PAYPAL BOX */
+.pp-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;max-width:380px;margin:0 auto}
+.pp-lbl{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,208,232,.28);margin-bottom:7px}
+.pp-email{font-family:monospace;font-size:.85rem;color:#fff;background:rgba(255,255,255,.05);padding:5px 13px;border-radius:6px;border:1px solid rgba(255,255,255,.08);user-select:all;display:inline-block;margin-bottom:8px}
+.pp-warn{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f87171;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.18);padding:5px 11px;border-radius:6px;display:inline-block}
+
+/* VOUCHES */
+.rating-hero{display:flex;flex-direction:column;align-items:center;gap:6px;margin:30px 0 10px}
+.rating-big{font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;color:#fff}
+.rating-big span{color:var(--gold)}
+.stars-big{color:var(--gold);font-size:1.6rem;letter-spacing:4px}
+.rating-meta{font-size:.78rem;color:rgba(200,208,232,.38);letter-spacing:.08em;margin-top:4px}
+.vouch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+@media(max-width:800px){.vouch-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.vouch-grid{grid-template-columns:1fr}}
+.vc{background:var(--s);border:1px solid var(--b);border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s}
+.vc:hover{transform:translateY(-3px);border-color:rgba(255,201,74,.25);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.vc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),rgba(255,201,74,.2))}
+.vc-verified{position:absolute;top:10px;right:10px;font-size:.55rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:rgba(0,245,160,.1);color:var(--g);border:1px solid rgba(0,245,160,.2)}
+.vc-top{display:flex;align-items:center;gap:10px}
+.vc-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.9rem;color:#fff;flex-shrink:0}
+.vc-info{flex:1;min-width:0}
+.vc-name{font-weight:700;color:#fff;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vc-date{font-size:.65rem;color:rgba(200,208,232,.35);margin-top:1px}
+.vc-stars{color:var(--gold);font-size:.7rem;letter-spacing:2px}
+.vc-text{font-size:.78rem;color:rgba(200,208,232,.7);line-height:1.6;font-weight:300;flex-grow:1}
+.vc-tag{display:inline-block;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px;font-weight:700;background:rgba(232,0,58,.12);color:#ff6b8a;border:1px solid rgba(232,0,58,.2);margin-top:2px}
+.vc-platform{display:flex;align-items:center;gap:4px;font-size:.6rem;color:rgba(200,208,232,.3);margin-top:4px}
+.source-dc{color:#5865f2}.source-ms{color:#0068d6}
+
+/* CHAT */
+#chat-box{position:fixed;bottom:74px;right:12px;width:300px;max-width:calc(100vw - 24px);height:380px;background:var(--s);border:1px solid rgba(255,255,255,.09);border-radius:16px;display:flex;flex-direction:column;z-index:200;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.7);transform-origin:bottom right;transform:scale(0);opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .3s}
+#chat-box.open{transform:scale(1);opacity:1;pointer-events:auto}
+.ch{padding:12px 14px;background:#0c0f1a;border-bottom:1px solid var(--b);display:flex;justify-content:space-between;align-items:center}
+.ch h4{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.1em;color:#fff;display:flex;align-items:center;gap:7px}
+.ch h4 i{color:var(--r)}
+.cx{background:none;border:none;color:rgba(200,208,232,.35);cursor:pointer;font-size:.85rem}
+.cx:hover{color:#fff}
+.cb{flex-grow:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:85%;padding:8px 11px;border-radius:10px;font-size:.74rem;line-height:1.55;white-space:pre-wrap}
+.msg.bot{background:#0c0f1a;border:1px solid var(--b);color:var(--t);align-self:flex-start;border-bottom-left-radius:3px}
+.msg.user{background:#5865F2;color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.cf{padding:8px 10px;background:#0c0f1a;border-top:1px solid var(--b);display:flex;gap:6px}
+.ci{flex-grow:1;background:rgba(255,255,255,.04);border:1px solid var(--b);border-radius:6px;color:#fff;font-family:'Barlow',sans-serif;font-size:.75rem;padding:7px 10px;outline:none}
+.ci:focus{border-color:rgba(88,101,242,.4)}
+.cs{background:var(--r);border:none;color:#fff;width:30px;height:30px;border-radius:6px;cursor:pointer;font-size:.75rem;flex-shrink:0}
+#cfab{position:fixed;bottom:16px;right:12px;width:50px;height:50px;background:var(--r);border:none;border-radius:50%;color:#fff;font-size:1.25rem;cursor:pointer;z-index:200;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(232,0,58,.5);transition:transform .2s;animation:fp 3s ease-in-out infinite}
+#cfab:hover{transform:scale(1.1)}
+@keyframes fp{0%,100%{box-shadow:0 4px 20px rgba(232,0,58,.5)}50%{box-shadow:0 4px 28px rgba(232,0,58,.15)}}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.a{opacity:0;animation:fu .5s ease forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}.d5{animation-delay:.33s}.d6{animation-delay:.4s}
+footer{text-align:center;padding:22px;font-size:.68rem;color:rgba(200,208,232,.15);border-top:1px solid var(--b);letter-spacing:.08em}
+</style>
+</head>
+<body>
+
+<!-- LANDING -->
+<div id="pg-home" class="page active">
+  <div class="wrap">
+    <div class="logo a d1"><div class="logo-hex"><i class="fas fa-shield-alt"></i></div><div class="logo-txt">NAW<span>DAR</span></div></div>
+    <p class="l-tag a d2">Fortnite Save The World</p>
+    <h1 class="l-h1 a d3">PREMIUM<br><em>CARRY</em> SERVICES</h1>
+    <p class="l-sub a d4">Fast. Reliable. Fully AFK Friendly.</p>
+    <div class="rating-bar a d4">
+      <div class="rating-stars">★★★★★</div>
+      <div class="rating-num">4.8 / 5</div>
+      <div class="rating-count">Based on 16 verified vouches</div>
+    </div>
+    <p class="choose a d5">Choose your service</p>
+    <div class="scards a d5">
+      <div class="sc end" onclick="nav('end')">
+        <div class="sc-tri"></div>
+        <span class="sc-ico"><i class="fas fa-shield-alt"></i></span>
+        <div class="sc-name">Endurance<br>Builds</div>
+        <p class="sc-desc">Full AFK zone setups. You chill — I run everything.</p>
+        <div class="sc-pills"><span class="pill">AFK Setup</span><span class="pill">From 12€</span></div>
+        <div class="sc-cta">VIEW PRICING <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="sc ssd" onclick="nav('ssd')">
+        <div class="sc-tri"></div>
+        <span class="sc-ico"><i class="fas fa-bolt"></i></span>
+        <div class="sc-name">Storm Shield<br>Defense</div>
+        <p class="sc-desc">Full SSD carry. I handle every wave.</p>
+        <div class="sc-pills"><span class="pill">Full Carry</span><span class="pill">From 1.3€</span></div>
+        <div class="sc-cta">VIEW PRICING <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="sc vch" onclick="nav('vch')">
+        <div class="sc-tri"></div>
+        <span class="sc-ico"><i class="fas fa-star"></i></span>
+        <div class="sc-name">Real<br>Vouches</div>
+        <p class="sc-desc">See what real customers say about the service.</p>
+        <div class="sc-pills"><span class="pill">16 Reviews</span><span class="pill">4.8★ Rated</span></div>
+        <div class="sc-cta">SEE VOUCHES <i class="fas fa-arrow-right"></i></div>
+      </div>
+    </div>
+    <div class="trust a d6">
+      <div class="ti"><i class="fas fa-check-circle" style="color:var(--g)"></i> Fast delivery</div>
+      <div class="ti"><i class="fas fa-lock" style="color:#5865f2"></i> Secure payment</div>
+      <div class="ti"><i class="fas fa-headset" style="color:var(--gold)"></i> 24/7 Support</div>
+      <div class="ti"><i class="fas fa-star" style="color:var(--r)"></i> Trusted seller</div>
+    </div>
+  </div>
+</div>
+
+<!-- ENDURANCE -->
+<div id="pg-end" class="page">
+  <div class="topbar"><div class="tb-in">
+    <button class="back-btn" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back</button>
+    <div class="ilogo">NAW<span>DAR</span></div>
+    <span class="tbadge tb-r"><i class="fas fa-shield-alt"></i> Endurance</span>
+  </div></div>
+  <div class="hero">
+    <p class="h-label c-r a d1"><i class="fas fa-shield-alt"></i> Endurance Builds</p>
+    <h2 class="h-title a d2">ZONE CARRIES</h2>
+    <p class="h-sub a d3">Complete AFK setups — I build, defend and run every wave. You do nothing.</p>
+  </div>
+  <div class="con">
+    <div class="sh a d3"><div class="sl"></div><div class="slb">Zone Bundles — Full AFK Setup</div><div class="sl"></div></div>
+    <div class="grid g4">
+      <div class="pc e a d3">
+        <div class="pst st-bl"></div><span class="ptag">Max Level</span>
+        <div class="pn">Twine Peaks</div>
+        <p class="pd">30-wave AFK with UFO defense. Top-tier zone.</p>
+        <div class="pr"><span class="pbig">40</span><span class="punit">€</span></div>
+      </div>
+      <div class="pc e a d4">
+        <div class="pst st-yl"></div>
+        <div class="pn">Canny Valley</div>
+        <p class="pd">Max XP &amp; Gold farming. Great for progression.</p>
+        <div class="pr"><span class="pbig">25</span><span class="punit">€</span></div>
+      </div>
+      <div class="pc e a d5">
+        <div class="pst st-gr"></div>
+        <div class="pn">Plankerton</div>
+        <p class="pd">Reliable resource-efficient AFK zone build.</p>
+        <div class="pr"><span class="pbig">19</span><span class="punit">€</span></div>
+      </div>
+      <div class="pc e a d6">
+        <div class="pst st-gy"></div>
+        <div class="pn">Stonewood</div>
+        <p class="pd">Perfect for daily wargames &amp; easy runs.</p>
+        <div class="pr"><span class="pbig">12</span><span class="punit">€</span></div>
+      </div>
+    </div>
+    <div class="sh" style="margin-top:28px"><div class="sl"></div><div class="slb">Add-On Extras</div><div class="sl"></div></div>
+    <div class="extras">
+      <div class="xc a d3"><div><div class="xn">Tier 3 Important</div><div class="xd">Key locations to T3</div></div><div class="xp">+5€</div></div>
+      <div class="xc a d4"><div><div class="xn">Tier 3 Everything</div><div class="xd">Every build to T3</div></div><div class="xp">+10€</div></div>
+      <div class="xc a d5"><div><div class="xn">Mat Grinder</div><div class="xd">Custom grinder setup</div></div><div class="xp">+3€</div></div>
+    </div>
+    <div class="order a d4">
+      <div class="o-title">READY TO ORDER?</div>
+      <p class="o-sub">Pay via Stripe or contact me on Discord</p>
+      <div class="action-btns">
+        <a href="https://buy.stripe.com/dRm9AVeaMbsx6U637l7bW00" target="_blank" class="stripe-btn">
+          <i class="fab fa-stripe-s"></i>
+          <div class="btn-label"><span class="btn-main">Pay with Stripe</span><span class="btn-hint">Fast &amp; secure payment</span></div>
+        </a>
+        <div class="dc-box">
+          <div class="dc-top"><i class="fab fa-discord"></i><span>Contact on Discord</span></div>
+          <span class="dc-tag">message me to order</span>
+          <a href="https://discord.com/users/936735341434511400" target="_blank" class="dc-link"><i class="fab fa-discord"></i> nawdar9805</a>
+          <p class="dc-hint">Tap to open my Discord profile directly</p>
+        </div>
+      </div>
+      <div class="pp-box">
+        <div class="pp-lbl">PayPal</div>
+        <div class="pp-email">Halloa92@yahoo.com</div><br>
+        <span class="pp-warn"><i class="fas fa-exclamation-triangle"></i> Family &amp; Friends ONLY — Be careful!</span>
+      </div>
+    </div>
+  </div>
+  <footer>© 2026 Nawdar STW Services</footer>
+</div>
+
+<!-- SSD -->
+<div id="pg-ssd" class="page">
+  <div class="topbar"><div class="tb-in">
+    <button class="back-btn" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back</button>
+    <div class="ilogo">NAW<span>DAR</span></div>
+    <span class="tbadge tb-g2"><i class="fas fa-bolt"></i> SSD Carry</span>
+  </div></div>
+  <div class="hero">
+    <p class="h-label c-g a d1"><i class="fas fa-bolt"></i> Storm Shield Defense</p>
+    <h2 class="h-title a d2">SSD CARRIES</h2>
+    <p class="h-sub a d3">I stay with you the entire SSD. You go AFK — I handle every wave.</p>
+  </div>
+  <div class="con">
+    <div class="sh a d3"><div class="sl"></div><div class="slb">Pricing by World</div><div class="sl"></div></div>
+    <div class="grid g3">
+      <div class="pc s a d3" style="padding-bottom:18px">
+        <div class="pst st-gr"></div>
+        <div class="pn">Plankerton</div>
+        <div class="sr"><div class="srow"><span class="srl">Per SSD (1–10)</span><span class="srv">1.3€</span></div></div>
+        <div class="brow"><span class="brl">Bundle 1–10</span><span class="brp">11€</span></div>
+      </div>
+      <div class="pc s a d4" style="padding-bottom:18px">
+        <div class="pst st-yl"></div>
+        <div class="pn">Canny Valley</div>
+        <div class="sr">
+          <div class="srow"><span class="srl">Per SSD (1–5)</span><span class="srv">1.5€</span></div>
+          <div class="srow"><span class="srl">Per SSD (6–10)</span><span class="srv">2.5€</span></div>
+        </div>
+        <div class="brow"><span class="brl">Bundle 1–10</span><span class="brp">18€</span></div>
+      </div>
+      <div class="pc s a d5" style="padding-bottom:18px">
+        <div class="pst st-bl"></div><span class="ptag">Max Level</span>
+        <div class="pn">Twine Peaks</div>
+        <div class="sr">
+          <div class="srow"><span class="srl">Per SSD (1–5)</span><span class="srv">2€</span></div>
+          <div class="srow"><span class="srl">Per SSD (6–10)</span><span class="srv">3€</span></div>
+        </div>
+        <div class="brow"><span class="brl">Bundle 1–10</span><span class="brp">23€</span></div>
+      </div>
+    </div>
+    <div class="note a d5"><strong>Every SSD carry includes:</strong><br>✓ Full carry — I do everything<br>✓ With you the whole time<br>✓ You just go AFK</div>
+    <div class="order a d5">
+      <div class="o-title">READY TO ORDER?</div>
+      <p class="o-sub">Pay via Stripe or contact me on Discord</p>
+      <div class="action-btns">
+        <a href="https://buy.stripe.com/dRm9AVeaMbsx6U637l7bW00" target="_blank" class="stripe-btn">
+          <i class="fab fa-stripe-s"></i>
+          <div class="btn-label"><span class="btn-main">Pay with Stripe</span><span class="btn-hint">Fast &amp; secure payment</span></div>
+        </a>
+        <div class="dc-box">
+          <div class="dc-top"><i class="fab fa-discord"></i><span>Contact on Discord</span></div>
+          <span class="dc-tag">message me to order</span>
+          <a href="https://discord.com/users/936735341434511400" target="_blank" class="dc-link"><i class="fab fa-discord"></i> nawdar9805</a>
+          <p class="dc-hint">Tap to open my Discord profile directly</p>
+        </div>
+      </div>
+      <div class="pp-box">
+        <div class="pp-lbl">PayPal</div>
+        <div class="pp-email">Halloa92@yahoo.com</div><br>
+        <span class="pp-warn"><i class="fas fa-exclamation-triangle"></i> Family &amp; Friends ONLY — Be careful!</span>
+      </div>
+    </div>
+  </div>
+  <footer>© 2026 Nawdar STW Services</footer>
+</div>
+
+<!-- VOUCHES -->
+<div id="pg-vch" class="page">
+  <div class="topbar"><div class="tb-in">
+    <button class="back-btn" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back</button>
+    <div class="ilogo">NAW<span>DAR</span></div>
+    <span class="tbadge tb-gr"><i class="fas fa-star"></i> Vouches</span>
+  </div></div>
+  <div class="hero">
+    <p class="h-label c-gr a d1"><i class="fas fa-star"></i> Customer Reviews</p>
+    <h2 class="h-title a d2">REAL VOUCHES</h2>
+    <p class="h-sub a d3">Every review below is from a real customer — screenshots verified.</p>
+  </div>
+  <div class="con">
+    <div class="rating-hero a d2">
+      <div class="rating-big">4<span>.8</span></div>
+      <div class="stars-big">★★★★★</div>
+      <div class="rating-meta">16 verified customer vouches</div>
+    </div>
+    <div class="sh a d3"><div class="sl"></div><div class="slb">Verified Customer Reviews</div><div class="sl"></div></div>
+    <div class="vouch-grid">
+      <div class="vc a d1"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#5865f2,#7289da)">P</div><div class="vc-info"><div class="vc-name">paulsd</div><div class="vc-date">Jan 8, 2026</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Vouch: built an AFK Twine Endurance pretty quickly, after upgrades it's been getting to 30/30. Another successful 30 waves! The after-build support is really great — 10/10."</div><div><span class="vc-tag">Twine Endurance</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord · Paid £60.61</div></div></div>
+      <div class="vc a d2"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#22c55e,#4ade80)">D</div><div class="vc-info"><div class="vc-name">DAWIXIK ★</div><div class="vc-date">Jan 9, 2026</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Vouch built Canny Valley endurance full afk cheap 10/10 very nice person."</div><div><span class="vc-tag">Canny Valley</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord</div></div></div>
+      <div class="vc a d3"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">D</div><div class="vc-info"><div class="vc-name">Dheer</div><div class="vc-date">Jan 7, 2026</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Vouch built twine endurance full afk fast cheap 10/10 very nice and good person."</div><div><span class="vc-tag">Twine Endurance</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord</div></div></div>
+      <div class="vc a d4"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)">L</div><div class="vc-info"><div class="vc-name">LShorty55</div><div class="vc-date">Dec 28, 2025</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Vouch 10/10 for canny and twine endurance build. Great service, awesome builds."</div><div><span class="vc-tag">Canny &amp; Twine</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord</div></div></div>
+      <div class="vc a d5"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#e8003a,#ff6b8a)">F</div><div class="vc-info"><div class="vc-name">FTRi7.</div><div class="vc-date">Feb 6, 2026</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Thank you so much for the endurance carry 10/10, full afk even for ufos and space rocks!"</div><div><span class="vc-tag">Endurance Carry</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord</div></div></div>
+      <div class="vc a d6"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#06b6d4,#22d3ee)">R</div><div class="vc-info"><div class="vc-name">ReneGo-</div><div class="vc-date">2026</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"I started twine, went to bed, woke up to use the bathroom.. and my twine was done 30 waves, thanks!"</div><div><span class="vc-tag">Twine Endurance</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord</div></div></div>
+      <div class="vc a d3"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#ec4899,#f9a8d4)">Y</div><div class="vc-info"><div class="vc-name">Yuh_muda_man</div><div class="vc-date">2025 · Paid €28</div><div class="vc-stars">★★★★☆</div></div></div><div class="vc-text">"It went quite well, I thought it was initially a scam but it actually went quite well, personally I'd rate 8/10 — playing the endurance now!"</div><div><span class="vc-tag">Endurance</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord · Stripe payment</div></div></div>
+      <div class="vc a d4"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#14b8a6,#2dd4bf)">J</div><div class="vc-info"><div class="vc-name">Jayy</div><div class="vc-date">Dec 12, 2025</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"10/10"</div><div><span class="vc-tag">Endurance</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord</div></div></div>
+      <div class="vc a d5"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#f97316,#fb923c)">A</div><div class="vc-info"><div class="vc-name">aigeas</div><div class="vc-date">2025</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"10/10 best experience. 100% recommend."</div><div><span class="vc-tag">Endurance</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord</div></div></div>
+      <div class="vc a d3"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#0068d6,#3b82f6)">J</div><div class="vc-info"><div class="vc-name">Jarett Xu</div><div class="vc-date">2025</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Tested to 25, it works to wave 30! Twine Peaks Wave 30 Completed — Waves Survived: 30. Scared me but everything held."</div><div><span class="vc-tag">Twine Endurance</span><div class="vc-platform"><i class="fas fa-comment-dots source-ms"></i> Messenger</div></div></div>
+      <div class="vc a d4"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">J</div><div class="vc-info"><div class="vc-name">Janice Hawbaker</div><div class="vc-date">2026</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"I'm not home. It's running." then "Yes ran all 30 waves!" — Left it AFK, came back to all 30 waves done.</div><div><span class="vc-tag">Endurance</span><div class="vc-platform"><i class="fas fa-comment-dots source-ms"></i> Messenger</div></div></div>
+      <div class="vc a d5"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#0891b2,#22d3ee)">C</div><div class="vc-info"><div class="vc-name">Customer</div><div class="vc-date">2025</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Good. Yes 5 times — tested it 5 times and it works every time!"</div><div><span class="vc-tag">Endurance</span><div class="vc-platform"><i class="fas fa-comment-dots source-ms"></i> Messenger</div></div></div>
+      <div class="vc a d6"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#10b981,#34d399)">C</div><div class="vc-info"><div class="vc-name">Customer</div><div class="vc-date">2025</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"10! but c is hard on 2 round after ufo" — Rated 10, noted the challenge is 2 rounds after UFO waves.</div><div><span class="vc-tag">Endurance</span><div class="vc-platform"><i class="fas fa-comment-dots source-ms"></i> Messenger</div></div></div>
+      <div class="vc a d3"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#5865f2,#818cf8)">G</div><div class="vc-info"><div class="vc-name">GhostShadow</div><div class="vc-date">Feb 20, 2026</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Twine is good. Got to wave 30. Upgrade and more anti air should help. It's luck at the end if smashers wander the right direction."</div><div><span class="vc-tag">Twine Endurance</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord</div></div></div>
+      <div class="vc a d4"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#e8003a,#ff6b8a)">J</div><div class="vc-info"><div class="vc-name">Jarett Xu</div><div class="vc-date">2025</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"Yes to 30 — works all the way to wave 30! Will send clip when AFK."</div><div><span class="vc-tag">Twine Endurance</span><div class="vc-platform"><i class="fas fa-comment-dots source-ms"></i> Messenger · Wave 30 confirmed</div></div></div>
+      <div class="vc a d5"><span class="vc-verified">✓ Verified</span><div class="vc-top"><div class="vc-avatar" style="background:linear-gradient(135deg,#f59e0b,#fcd34d)">P</div><div class="vc-info"><div class="vc-name">paulsd</div><div class="vc-date">Jan 2026</div><div class="vc-stars">★★★★★</div></div></div><div class="vc-text">"I can give it a 10 outta 10, the after-build support is really great. Another successful 30 waves!"</div><div><span class="vc-tag">Twine Endurance</span><div class="vc-platform"><i class="fab fa-discord source-dc"></i> Discord · Wave 30 ×2</div></div></div>
+    </div>
+    <div class="order" style="margin-top:50px">
+      <div class="o-title">CONVINCED? ORDER NOW</div>
+      <p class="o-sub">Join 16+ satisfied customers</p>
+      <div class="action-btns">
+        <a href="https://buy.stripe.com/dRm9AVeaMbsx6U637l7bW00" target="_blank" class="stripe-btn">
+          <i class="fab fa-stripe-s"></i>
+          <div class="btn-label"><span class="btn-main">Pay with Stripe</span><span class="btn-hint">Fast &amp; secure payment</span></div>
+        </a>
+        <div class="dc-box">
+          <div class="dc-top"><i class="fab fa-discord"></i><span>Contact on Discord</span></div>
+          <span class="dc-tag">message me to order</span>
+          <a href="https://discord.com/users/936735341434511400" target="_blank" class="dc-link"><i class="fab fa-discord"></i> nawdar9805</a>
+          <p class="dc-hint">Tap to open my Discord profile directly</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>© 2026 Nawdar STW Services</footer>
+</div>
+
+<!-- CHAT -->
+<div id="chat-box">
+  <div class="ch">
+    <h4><i class="fas fa-headset"></i> Nawdar Support</h4>
+    <button class="cx" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cb" id="cb">
+    <div class="msg bot">Hey! 👋 Ask me about prices, bundles, or anything else.</div>
+  </div>
+  <div class="cf">
+    <input class="ci" id="ci" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="cs" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+<button id="cfab" onclick="toggleChat()"><i class="fas fa-comment-dots"></i></button>
+
+<script>
+var pages = { home:'pg-home', end:'pg-end', ssd:'pg-ssd', vch:'pg-vch' };
+
+function nav(key) {
+  var id = pages[key];
+  if (!id) return;
+  document.querySelectorAll('.page').forEach(function(p) {
+    p.classList.remove('active');
+  });
+  var pg = document.getElementById(id);
+  pg.classList.add('active');
+  window.scrollTo(0, 0);
+  pg.querySelectorAll('.a').forEach(function(el) {
+    el.style.animation = 'none';
+    el.offsetHeight;
+    el.style.animation = '';
+  });
+}
+
+function toggleChat() {
+  document.getElementById('chat-box').classList.toggle('open');
+}
+
+function addMsg(text, role) {
+  var b = document.getElementById('cb');
+  var d = document.createElement('div');
+  d.className = 'msg ' + role;
+  d.textContent = text;
+  b.appendChild(d);
+  b.scrollTop = b.scrollHeight;
+  return d;
+}
+
+async function sendMsg() {
+  var inp = document.getElementById('ci');
+  var txt = inp.value.trim();
+  if (!txt) return;
+  addMsg(txt, 'user');
+  inp.value = '';
+  var ld = addMsg('Typing...', 'bot');
+  ld.style.opacity = '0.4';
+  var sys = 'Support for Nawdar STW Services. Endurance: Twine 40€, Canny 25€, Plankerton 19€, Stonewood 12€. Extras: T3 Important +5€, T3 All +10€, Mat Grinder +3€. SSD: Plankerton 1.3€/ssd (bundle 11€). Canny 1.5€[1-5] 2.5€[6-10] (bundle 18€). Twine 2€[1-5] 3€[6-10] (bundle 23€). Payment: PayPal F&F Halloa92@yahoo.com or Stripe. Discord: nawdar9805. Rating: 4.8/5 from 16 real vouches. Reply short and friendly in English.';
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 250,
+        system: sys,
+        messages: [{ role: 'user', content: txt }]
+      })
+    });
+    var data = await res.json();
+    ld.textContent = data.content[0].text;
+  } catch(e) {
+    ld.textContent = 'Network error, try again.';
+  }
+  ld.style.opacity = '1';
+}
+</script>
+</body>
+</html>
